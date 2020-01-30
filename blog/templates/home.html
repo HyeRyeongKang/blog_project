@@ -1,5 +1,7 @@
 {%extends 'base.html'%}
 {% block contents%}
+
+{%if user.is_authenticated%}
 <!--한페이지 글-->
 {%for blog in posts%}
 <div class='container'>
@@ -36,5 +38,11 @@
     <a href="?page={{posts.next_page_number}}">Next</a>
     <a href="?page={{posts.paginator.num_pages}}">Last</a>
     {%endif%}
-    </div>
+</div>
+{%else%}
+<div class="container">
+    <a class="nav-link" href="{%url 'signup'%}">Sign up</a>
+    <a class="nav-link" href="{%url 'login'%}">Login</a>
+</div>
+{%endif%}
 {%endblock%}
